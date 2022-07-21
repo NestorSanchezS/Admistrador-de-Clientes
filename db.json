@@ -1,0 +1,20 @@
+{
+  "clientes": [
+    {
+      "name": "Nestor",
+      "empresa": "Intalnet",
+      "email": "nesaenz.69@gmail.com",
+      "telefono": "3015168800",
+      "notas": "Necesito ser Desarrollador",
+      "id": 1
+    },
+    {
+      "name": "Nestor",
+      "empresa": "Intalnet",
+      "email": "nesaenz.69@gmail.com",
+      "telefono": "3015168800",
+      "notas": "Necesito ser desarrollador",
+      "id": 2
+    }
+  ]
+}
