@@ -4,6 +4,7 @@ import { Layout } from "./layout/Layout";
 import { EditarCliente } from "./pages/EditarCliente";
 import { Inicio } from "./pages/Inicio";
 import { NuevoCliente } from "./pages/NuevoCliente";
+import { VerCliente } from "./pages/VerCliente";
 
 export const App = () => {
   return (
@@ -12,7 +13,8 @@ export const App = () => {
         <Route path="/clientes" element={<Layout />}>
           <Route index element={<Inicio />} />
           <Route path="nuevo" element={<NuevoCliente />} />
-          <Route path="editar" element={<EditarCliente />} />
+          <Route path="editar/:id" element={<EditarCliente />} />
+          <Route path=":id" element={<VerCliente />} />
         </Route>
       </Routes>
     </BrowserRouter>
