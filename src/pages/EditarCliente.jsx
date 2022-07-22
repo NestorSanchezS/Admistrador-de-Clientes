@@ -30,7 +30,11 @@ export const EditarCliente = () => {
       <p className="mt-3">
         Utiliza este formulario para editar datos de un cliente
       </p>
-      <Formulario editClient={editClient} isLoading={isLoading} />
+      {Object.keys(editClient).length > 0 ? (
+        <Formulario editClient={editClient} isLoading={isLoading} />
+      ) : (
+        <p>No hay resultados</p>
+      )}
     </>
   );
 };

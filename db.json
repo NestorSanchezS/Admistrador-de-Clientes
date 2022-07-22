@@ -1,38 +1,6 @@
 {
   "clientes": [
     {
-      "name": "Nestor",
-      "empresa": "Intalnet",
-      "email": "nesaenz.69@gmail.com",
-      "telefono": "3015168800",
-      "notas": "Necesito ser Desarrollador",
-      "id": 1
-    },
-    {
-      "name": "Nestor",
-      "empresa": "Intalnet",
-      "email": "nesaenz.69@gmail.com",
-      "telefono": "3015168800",
-      "notas": "Necesito ser desarrollador",
-      "id": 2
-    },
-    {
-      "name": "Nestor",
-      "empresa": "Intalnet",
-      "email": "nesaenz.69@gmail.com",
-      "telefono": "3015168800",
-      "notas": "Necesito ser desarrollador",
-      "id": 3
-    },
-    {
-      "name": "Cristian",
-      "empresa": "Simetrik",
-      "email": "crsitian@gmaill.com",
-      "telefono": "877897897",
-      "notas": "Lo que sea mi paisano",
-      "id": 4
-    },
-    {
       "name": "Juan",
       "empresa": "Konecta",
       "email": "juan@gmail.com",
@@ -47,14 +15,6 @@
       "telefono": "565565675",
       "notas": "Lo que sea mi pasaino x3",
       "id": 6
-    },
-    {
-      "name": "Danilo",
-      "empresa": "QVision",
-      "email": "danilo@gmail.com",
-      "telefono": "56756756",
-      "notas": "vc cxcxcvxvc",
-      "id": 7
     }
   ]
 }

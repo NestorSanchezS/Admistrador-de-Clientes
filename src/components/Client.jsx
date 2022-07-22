@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export const Client = ({ client }) => {
+export const Client = ({ client, handleDelete }) => {
   const { name, empresa, email, telefono, notas, id } = client;
 
   const navigate = useNavigate();
@@ -37,6 +37,7 @@ export const Client = ({ client }) => {
           Edit
         </button>
         <button
+          onClick={() => handleDelete(id)}
           type="button"
           className="bg-red-600 hover:bg-red-700 w-full text-white p-2 uppercase font-bold text-xs mt-2 borde
         "

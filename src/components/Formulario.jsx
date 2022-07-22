@@ -1,12 +1,13 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { Alerts } from "./Alerts";
 import { Spinner } from "./Spinner";
 
 export const Formulario = ({ editClient, isLoading }) => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const nuevoCliemteSchema = Yup.object().shape({
     name: Yup.string()
@@ -25,18 +26,31 @@ export const Formulario = ({ editClient, isLoading }) => {
 
   const handleSubmit = async (valores) => {
     try {
-      const url = "http://localhost:4000/clientes";
-      const respuesta = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify(valores),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      console.log(respuesta);
-      const resultado = await respuesta.json;
-      console.log(resultado);
-      navigate("/clientes");
+      if (Object.keys(editClient).length > 0) {
+        //Editando un registro
+        const urlUpdate = `http://localhost:4000/clientes/${id}`;
+        const responseUpdate = await fetch(urlUpdate, {
+          method: "PUT",
+          body: JSON.stringify(valores),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        await responseUpdate.json();
+        navigate("/clientes");
+      } else {
+        //Nuevo registro
+        const url = "http://localhost:4000/clientes";
+        const respuesta = await fetch(url, {
+          method: "POST",
+          body: JSON.stringify(valores),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        await respuesta.json;
+        navigate("/clientes");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +61,7 @@ export const Formulario = ({ editClient, isLoading }) => {
   ) : (
     <div className="bg-white mt-10 px-5 py-10 rounded-md shadow md:w-3/4 mx-auto">
       <h1 className="text-gray-600 font-bold text-xl uppercase text-center  ">
-        {editClient ? <p>Editar Cliente</p> : <p>Agregar Cliente</p>}
+        {editClient.name ? <p>Editar Cliente</p> : <p>Agregar Cliente</p>}
       </h1>
       <Formik
         initialValues={{
@@ -146,7 +160,7 @@ export const Formulario = ({ editClient, isLoading }) => {
               </div>
               <input
                 type="submit"
-                value={editClient ? "Editar Cliente" : "Agregar Cliente"}
+                value={editClient.name ? "Editar Cliente" : "Agregar Cliente"}
                 className="mt-5 w-full bg-blue-800 text-white uppercase font-bold text-lg"
               />
             </Form>

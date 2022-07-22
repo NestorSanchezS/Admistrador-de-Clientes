@@ -17,6 +17,21 @@ export const Inicio = () => {
     getClientsAPI();
   }, []);
 
+  const handleDelete = async (id) => {
+    console.log("Eliminando", id);
+    try {
+      const url = `http://localhost:4000/clientes/${id}`;
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      await response.json();
+      const arrayClient = listClients.filter((client) => client.id !== id);
+      setListClients(arrayClient)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <h1 className="font-black text-4xl text-blue-900">Clientes</h1>
@@ -33,7 +48,11 @@ export const Inicio = () => {
         </thead>
         <tbody>
           {listClients.map((client) => (
-            <Client key={client.id} client={client} />
+            <Client
+              key={client.id}
+              client={client}
+              handleDelete={handleDelete}
+            />
           ))}
         </tbody>
       </table>
