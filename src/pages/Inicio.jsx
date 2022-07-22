@@ -18,17 +18,20 @@ export const Inicio = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    console.log("Eliminando", id);
-    try {
-      const url = `http://localhost:4000/clientes/${id}`;
-      const response = await fetch(url, {
-        method: "DELETE",
-      });
-      await response.json();
-      const arrayClient = listClients.filter((client) => client.id !== id);
-      setListClients(arrayClient)
-    } catch (error) {
-      console.log(error);
+    const confirmar = confirm("¿Deseas eliminar este cliente?");
+
+    if (confirmar) {
+      try {
+        const url = `http://localhost:4000/clientes/${id}`;
+        const response = await fetch(url, {
+          method: "DELETE",
+        });
+        await response.json();
+        const arrayClient = listClients.filter((client) => client.id !== id);
+        setListClients(arrayClient);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
