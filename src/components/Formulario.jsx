@@ -3,8 +3,9 @@ import { Formik, Field, Form } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Alerts } from "./Alerts";
+import { Spinner } from "./Spinner";
 
-export const Formulario = () => {
+export const Formulario = ({ editClient, isLoading }) => {
   const navigate = useNavigate();
 
   const nuevoCliemteSchema = Yup.object().shape({
@@ -41,19 +42,22 @@ export const Formulario = () => {
     }
   };
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <div className="bg-white mt-10 px-5 py-10 rounded-md shadow md:w-3/4 mx-auto">
       <h1 className="text-gray-600 font-bold text-xl uppercase text-center  ">
-        Agregar Cliente
+        {editClient ? <p>Editar Cliente</p> : <p>Agregar Cliente</p>}
       </h1>
       <Formik
         initialValues={{
-          name: "",
-          empresa: "",
-          email: "",
-          telefono: "",
-          notas: "",
+          name: editClient?.name ?? "",
+          empresa: editClient?.empresa ?? "",
+          email: editClient?.email ?? "",
+          telefono: editClient?.telefono ?? "",
+          notas: editClient?.notas ?? "",
         }}
+        enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
           await handleSubmit(values);
           resetForm();
@@ -142,7 +146,7 @@ export const Formulario = () => {
               </div>
               <input
                 type="submit"
-                value="Agregar Cliente"
+                value={editClient ? "Editar Cliente" : "Agregar Cliente"}
                 className="mt-5 w-full bg-blue-800 text-white uppercase font-bold text-lg"
               />
             </Form>
@@ -151,4 +155,9 @@ export const Formulario = () => {
       </Formik>
     </div>
   );
+};
+
+Formulario.defaultProps = {
+  editClient: [],
+  cargando: false,
 };

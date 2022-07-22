@@ -32,6 +32,7 @@ export const Client = ({ client }) => {
           type="button"
           className="bg-blue-600 hover:bg-blue-700 w-full text-white p-2 uppercase font-bold text-xs
         "
+          onClick={() => navigate(`/clientes/editar/${id}`)}
         >
           Edit
         </button>
