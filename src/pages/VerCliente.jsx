@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Spinner } from "../components/Spinner";
 
 export const VerCliente = () => {
   const [infoClient, setInfoClient] = useState([]);
@@ -25,46 +26,38 @@ export const VerCliente = () => {
 
   const { name, email, empresa, telefono, notas } = infoClient;
 
-  return Object.keys(infoClient).length === 0 ? (
-    <p>No hay resultado</p>
+  return isLoading ? (
+    <Spinner />
+  ) : Object.keys(infoClient).length === 0 ? (
+    <p>No hay resultados</p>
   ) : (
     <div>
-      {isLoading ? (
-        "Loading..."
-      ) : (
-        <>
-          <h1 className="font-black text-4xl text-blue-900">
-            Ver cliente: {name}
-          </h1>
-          <p className="mt-3">Informacion del cliente</p>
-          <p className="text-2xl text-gray-600 mt-10">
-            <span className="text-gray-800 uppercase font-bold">Cliente:</span>
-            {name}
-          </p>
-          <p className="text-2xl text-gray-600 mt-4">
-            <span className="text-gray-800 uppercase font-bold">Email:</span>
-            {email}
-          </p>
-          {telefono && (
-            <p className="text-2xl text-gray-600 mt-4">
-              <span className="text-gray-800 uppercase font-bold">
-                Telefono:
-              </span>
-              {telefono}
-            </p>
-          )}
+      <h1 className="font-black text-4xl text-blue-900">Ver cliente: {name}</h1>
+      <p className="mt-3">Informacion del cliente</p>
+      <p className="text-2xl text-gray-600 mt-10">
+        <span className="text-gray-800 uppercase font-bold">Cliente:</span>
+        {name}
+      </p>
+      <p className="text-2xl text-gray-600 mt-4">
+        <span className="text-gray-800 uppercase font-bold">Email:</span>
+        {email}
+      </p>
+      {telefono && (
+        <p className="text-2xl text-gray-600 mt-4">
+          <span className="text-gray-800 uppercase font-bold">Telefono:</span>
+          {telefono}
+        </p>
+      )}
 
-          <p className="text-2xl text-gray-600 mt-4">
-            <span className="text-gray-800 uppercase font-bold">Empresa:</span>
-            {empresa}
-          </p>
-          {notas && (
-            <p className="text-2xl text-gray-600 mt-4">
-              <span className="text-gray-800 uppercase font-bold">Notas:</span>
-              {notas}
-            </p>
-          )}
-        </>
+      <p className="text-2xl text-gray-600 mt-4">
+        <span className="text-gray-800 uppercase font-bold">Empresa:</span>
+        {empresa}
+      </p>
+      {notas && (
+        <p className="text-2xl text-gray-600 mt-4">
+          <span className="text-gray-800 uppercase font-bold">Notas:</span>
+          {notas}
+        </p>
       )}
     </div>
   );
